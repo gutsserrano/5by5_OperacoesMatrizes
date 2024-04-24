@@ -5,6 +5,32 @@ float[,] matriz2 = new float[qtdLinhas, qtdColunas];
 float[,] resultado = new float[qtdLinhas, qtdColunas];
 int option;
 
+void ImprimirMatriz(float[,] matriz, string titulo)
+{
+    Console.Write("\n\n"+titulo);
+    for (int linha = 0; linha < qtdLinhas; linha++)
+    {
+        Console.WriteLine();
+        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        {
+            Console.Write(matriz[linha, coluna] + " ");
+        }
+    }
+}
+
+int menu()
+{
+    do
+    {
+        Console.WriteLine("\n\nDeseja sair do programa?");
+        Console.WriteLine("1 - Sair");
+        Console.WriteLine("2 - Continuar");
+        option = int.Parse(Console.ReadLine());
+    } while (option < 1 || option > 2);
+
+    return option;
+}
+
 do
 {
     Console.Clear();
@@ -18,25 +44,9 @@ do
         }
     }
 
-    Console.Write("Matriz 1");
-    for (int linha = 0; linha < qtdLinhas; linha++)
-    {
-        Console.WriteLine();
-        for (int coluna = 0; coluna < qtdColunas; coluna++)
-        {
-            Console.Write(matriz1[linha, coluna] + " ");
-        }
-    }
+    ImprimirMatriz(matriz1, "Matriz 1");
 
-    Console.Write("\n\nMatriz 2");
-    for (int linha = 0; linha < qtdLinhas; linha++)
-    {
-        Console.WriteLine();
-        for (int coluna = 0; coluna < qtdColunas; coluna++)
-        {
-            Console.Write(matriz2[linha, coluna] + " ");
-        }
-    }
+    ImprimirMatriz(matriz2, "Matriz 2");
 
     // Somando as matrizes
     for (int linha = 0; linha < qtdLinhas; linha++)
@@ -47,15 +57,7 @@ do
         }
     }
 
-    Console.Write("\n\nSoma das matrizes");
-    for (int linha = 0; linha < qtdLinhas; linha++)
-    {
-        Console.WriteLine();
-        for (int coluna = 0; coluna < qtdColunas; coluna++)
-        {
-            Console.Write(resultado[linha, coluna] + " ");
-        }
-    }
+    ImprimirMatriz(resultado, "Soma das matrizes");
 
     // Subtraindo as matrizes
     for (int linha = 0; linha < qtdLinhas; linha++)
@@ -66,15 +68,7 @@ do
         }
     }
 
-    Console.Write("\n\nSubtração das matrizes");
-    for (int linha = 0; linha < qtdLinhas; linha++)
-    {
-        Console.WriteLine();
-        for (int coluna = 0; coluna < qtdColunas; coluna++)
-        {
-            Console.Write(resultado[linha, coluna] + " ");
-        }
-    }
+    ImprimirMatriz(resultado, "Subtração das matrizes");
 
     // Multiplicando as matrizes
     for (int linha = 0; linha < qtdLinhas; linha++)
@@ -85,15 +79,7 @@ do
         }
     }
 
-    Console.Write("\n\nMultiplicação das matrizes");
-    for (int linha = 0; linha < qtdLinhas; linha++)
-    {
-        Console.WriteLine();
-        for (int coluna = 0; coluna < qtdColunas; coluna++)
-        {
-            Console.Write(resultado[linha, coluna] + " ");
-        }
-    }
+    ImprimirMatriz(resultado, "Multiplicação das matrizes");
 
     // Dividindo as matrizes
     for (int linha = 0; linha < qtdLinhas; linha++)
@@ -107,21 +93,7 @@ do
         }
     }
 
-    Console.Write("\n\nDivisão das matrizes");
-    for (int linha = 0; linha < qtdLinhas; linha++)
-    {
-        Console.WriteLine();
-        for (int coluna = 0; coluna < qtdColunas; coluna++)
-        {
-            Console.Write($"{resultado[linha, coluna]:0.00} ");
-        }
-    }
+    ImprimirMatriz(resultado, "Divisão das matrizes");
 
-    do
-    {
-        Console.WriteLine("\n\nDeseja sair do programa?");
-        Console.WriteLine("1 - Sair");
-        Console.WriteLine("2 - Continuar");
-        option = int.Parse(Console.ReadLine());
-    } while (option < 1 || option > 2);
-} while (option == 2);
+    
+} while (menu() == 2);
