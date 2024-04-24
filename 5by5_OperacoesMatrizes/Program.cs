@@ -1,9 +1,48 @@
-﻿// Faça um programa que gere duas matrizes e faça as 4 operações básicas nelas
+﻿/* Faça um programa que gere duas matrizes e faça as 4 operações básicas nelas
+    adicionar:
+    a) Função de menu de seleção da operação
+	b) Função de sorteio da matriz
+	c) Função que cria a matriz passando 2 parametros (linha, coluna)
+*/
+
 int qtdLinhas = 5, qtdColunas = 5;
-float[,] matriz1 = new float[qtdLinhas, qtdColunas];
-float[,] matriz2 = new float[qtdLinhas, qtdColunas];
-float[,] resultado = new float[qtdLinhas, qtdColunas];
+float[,] matriz1;
+float[,] matriz2;
+float[,] resultado;
+int operacao;
 int option;
+
+int MenuOperacao()
+{
+    int op;
+    do
+    {
+        Console.WriteLine("\n\nSelecione a operação desejada:");
+        Console.WriteLine("1 - Adição");
+        Console.WriteLine("2 - Subtração");
+        Console.WriteLine("3 - Multiplicação");
+        Console.WriteLine("4 - Divisão");
+        op = int.Parse(Console.ReadLine());
+    } while (op < 1 || op > 4);
+
+    return op;
+}
+
+float[,] CriarMatriz(int maxLinha, int maxColuna)
+{
+    return new float[maxLinha, maxColuna];
+}
+
+void GerarValores(float[,] matriz, int min, int max)
+{
+    for (int linha = 0; linha < qtdLinhas; linha++)
+    {
+        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        {
+            matriz[linha, coluna] = new Random().Next(min, max);
+        }
+    }
+}
 
 void ImprimirMatriz(float[,] matriz, string titulo)
 {
@@ -35,65 +74,72 @@ do
 {
     Console.Clear();
 
-    for (int linha = 0; linha < qtdLinhas; linha++)
-    {
-        for (int coluna = 0; coluna < qtdColunas; coluna++)
-        {
-            matriz1[linha, coluna] = new Random().Next(0, 10);
-            matriz2[linha, coluna] = new Random().Next(0, 10);
-        }
-    }
+    matriz1 = CriarMatriz(qtdLinhas, qtdColunas);
+    matriz2 = CriarMatriz(qtdLinhas, qtdColunas);
+    resultado = CriarMatriz(qtdLinhas, qtdColunas);
+
+    GerarValores(matriz1, 0, 10);
+    GerarValores(matriz2, 0, 10);
 
     ImprimirMatriz(matriz1, "Matriz 1");
-
     ImprimirMatriz(matriz2, "Matriz 2");
 
-    // Somando as matrizes
+    operacao = MenuOperacao();
+
+    // Operando as matrizes
     for (int linha = 0; linha < qtdLinhas; linha++)
     {
         for (int coluna = 0; coluna < qtdColunas; coluna++)
         {
-            resultado[linha, coluna] = matriz1[linha, coluna] + matriz2[linha, coluna];
+            switch (operacao)
+            {
+                // Soma
+                case 1:
+                    resultado[linha, coluna] = matriz1[linha, coluna] + matriz2[linha, coluna];
+                    break;
+
+                // Subtração
+                case 2:
+                    resultado[linha, coluna] = matriz1[linha, coluna] - matriz2[linha, coluna];
+                    break;
+
+                // Multiplicação
+                case 3:
+                    resultado[linha, coluna] = matriz1[linha, coluna] * matriz2[linha, coluna];
+                    break;
+
+                // Divisão
+                case 4:
+                    if (matriz2[linha, coluna] != 0)
+                        resultado[linha, coluna] = matriz1[linha, coluna] / matriz2[linha, coluna];
+                    else
+                        resultado[linha, coluna] = float.NaN;
+                    break;
+                default:
+                    resultado[linha, coluna] = float.NaN;
+                    break;
+            }
         }
     }
 
-    ImprimirMatriz(resultado, "Soma das matrizes");
-
-    // Subtraindo as matrizes
-    for (int linha = 0; linha < qtdLinhas; linha++)
+    string msg = "";
+    switch(operacao)
     {
-        for (int coluna = 0; coluna < qtdColunas; coluna++)
-        {
-            resultado[linha, coluna] = matriz1[linha, coluna] - matriz2[linha, coluna];
-        }
+        case 1:
+            msg = "Soma das matrizes";
+            break;
+        case 2:
+            msg = "Subtração das matrizes";
+            break;
+        case 3:
+            msg = "Multiplicação das matrizes";
+            break;
+        case 4:
+            msg = "Divisão das matrizes";
+            break;
+
     }
 
-    ImprimirMatriz(resultado, "Subtração das matrizes");
-
-    // Multiplicando as matrizes
-    for (int linha = 0; linha < qtdLinhas; linha++)
-    {
-        for (int coluna = 0; coluna < qtdColunas; coluna++)
-        {
-            resultado[linha, coluna] = matriz1[linha, coluna] * matriz2[linha, coluna];
-        }
-    }
-
-    ImprimirMatriz(resultado, "Multiplicação das matrizes");
-
-    // Dividindo as matrizes
-    for (int linha = 0; linha < qtdLinhas; linha++)
-    {
-        for (int coluna = 0; coluna < qtdColunas; coluna++)
-        {
-            if (matriz2[linha, coluna] != 0)
-                resultado[linha, coluna] = matriz1[linha, coluna] / matriz2[linha, coluna];
-            else
-                resultado[linha, coluna] = float.NaN;
-        }
-    }
-
-    ImprimirMatriz(resultado, "Divisão das matrizes");
-
+    ImprimirMatriz(resultado, msg);
     
 } while (menu() == 2);
