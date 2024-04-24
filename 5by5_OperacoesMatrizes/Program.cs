@@ -1,110 +1,127 @@
 ﻿// Faça um programa que gere duas matrizes e faça as 4 operações básicas nelas
-int qtdLinhas = 3, qtdColunas = 3;
-int[,] matriz1 = new int[qtdLinhas, qtdColunas];
-int[,] matriz2 = new int[qtdLinhas, qtdColunas];
-int[,] resultado = new int[qtdLinhas, qtdColunas];
+int qtdLinhas = 5, qtdColunas = 5;
+float[,] matriz1 = new float[qtdLinhas, qtdColunas];
+float[,] matriz2 = new float[qtdLinhas, qtdColunas];
+float[,] resultado = new float[qtdLinhas, qtdColunas];
+int option;
 
-for (int linha = 0; linha < qtdLinhas; linha++)
+do
 {
-    for (int coluna = 0; coluna < qtdColunas; coluna++)
-    {
-        matriz1[linha, coluna] = new Random().Next(1, 10);
-        matriz2[linha, coluna] = new Random().Next(1, 10);
-    }
-}
+    Console.Clear();
 
-Console.Write("Matriz 1");
-for (int linha = 0; linha < qtdLinhas; linha++)
-{
-    Console.WriteLine();
-    for (int coluna = 0; coluna < qtdColunas; coluna++)
+    for (int linha = 0; linha < qtdLinhas; linha++)
     {
-        Console.Write(matriz1[linha, coluna] + " ");
+        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        {
+            matriz1[linha, coluna] = new Random().Next(0, 10);
+            matriz2[linha, coluna] = new Random().Next(0, 10);
+        }
     }
-}
 
-Console.Write("\n\nMatriz 2");
-for (int linha = 0; linha < qtdLinhas; linha++)
-{
-    Console.WriteLine();
-    for (int coluna = 0; coluna < qtdColunas; coluna++)
+    Console.Write("Matriz 1");
+    for (int linha = 0; linha < qtdLinhas; linha++)
     {
-        Console.Write(matriz2[linha, coluna] + " ");
+        Console.WriteLine();
+        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        {
+            Console.Write(matriz1[linha, coluna] + " ");
+        }
     }
-}
 
-// Somando as matrizes
-for (int linha = 0; linha < qtdLinhas; linha++)
-{
-    for (int coluna = 0; coluna < qtdColunas; coluna++)
+    Console.Write("\n\nMatriz 2");
+    for (int linha = 0; linha < qtdLinhas; linha++)
     {
-        resultado[linha, coluna] = matriz1[linha, coluna] + matriz2[linha, coluna];
+        Console.WriteLine();
+        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        {
+            Console.Write(matriz2[linha, coluna] + " ");
+        }
     }
-}
 
-Console.Write("\n\nSoma das matrizes");
-for (int linha = 0; linha < qtdLinhas; linha++)
-{
-    Console.WriteLine();
-    for (int coluna = 0; coluna < qtdColunas; coluna++)
+    // Somando as matrizes
+    for (int linha = 0; linha < qtdLinhas; linha++)
     {
-        Console.Write(resultado[linha, coluna] + " ");
+        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        {
+            resultado[linha, coluna] = matriz1[linha, coluna] + matriz2[linha, coluna];
+        }
     }
-}
 
-// Subtraindo as matrizes
-for (int linha = 0; linha < qtdLinhas; linha++)
-{
-    for (int coluna = 0; coluna < qtdColunas; coluna++)
+    Console.Write("\n\nSoma das matrizes");
+    for (int linha = 0; linha < qtdLinhas; linha++)
     {
-        resultado[linha, coluna] = matriz1[linha, coluna] - matriz2[linha, coluna];
+        Console.WriteLine();
+        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        {
+            Console.Write(resultado[linha, coluna] + " ");
+        }
     }
-}
 
-Console.Write("\n\nSubtração das matrizes");
-for (int linha = 0; linha < qtdLinhas; linha++)
-{
-    Console.WriteLine();
-    for (int coluna = 0; coluna < qtdColunas; coluna++)
+    // Subtraindo as matrizes
+    for (int linha = 0; linha < qtdLinhas; linha++)
     {
-        Console.Write(resultado[linha, coluna] + " ");
+        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        {
+            resultado[linha, coluna] = matriz1[linha, coluna] - matriz2[linha, coluna];
+        }
     }
-}
 
-// Multiplicando as matrizes
-for (int linha = 0; linha < qtdLinhas; linha++)
-{
-    for (int coluna = 0; coluna < qtdColunas; coluna++)
+    Console.Write("\n\nSubtração das matrizes");
+    for (int linha = 0; linha < qtdLinhas; linha++)
     {
-        resultado[linha, coluna] = matriz1[linha, coluna] * matriz2[linha, coluna];
+        Console.WriteLine();
+        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        {
+            Console.Write(resultado[linha, coluna] + " ");
+        }
     }
-}
 
-Console.Write("\n\nMultiplicação das matrizes");
-for (int linha = 0; linha < qtdLinhas; linha++)
-{
-    Console.WriteLine();
-    for (int coluna = 0; coluna < qtdColunas; coluna++)
+    // Multiplicando as matrizes
+    for (int linha = 0; linha < qtdLinhas; linha++)
     {
-        Console.Write(resultado[linha, coluna] + " ");
+        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        {
+            resultado[linha, coluna] = matriz1[linha, coluna] * matriz2[linha, coluna];
+        }
     }
-}
 
-// Dividindo as matrizes
-for (int linha = 0; linha < qtdLinhas; linha++)
-{
-    for (int coluna = 0; coluna < qtdColunas; coluna++)
+    Console.Write("\n\nMultiplicação das matrizes");
+    for (int linha = 0; linha < qtdLinhas; linha++)
     {
-        resultado[linha, coluna] = matriz1[linha, coluna] / matriz2[linha, coluna];
+        Console.WriteLine();
+        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        {
+            Console.Write(resultado[linha, coluna] + " ");
+        }
     }
-}
 
-Console.Write("\n\nDivisão das matrizes");
-for (int linha = 0; linha < qtdLinhas; linha++)
-{
-    Console.WriteLine();
-    for (int coluna = 0; coluna < qtdColunas; coluna++)
+    // Dividindo as matrizes
+    for (int linha = 0; linha < qtdLinhas; linha++)
     {
-        Console.Write(resultado[linha, coluna] + " ");
+        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        {
+            if (matriz2[linha, coluna] != 0)
+                resultado[linha, coluna] = matriz1[linha, coluna] / matriz2[linha, coluna];
+            else
+                resultado[linha, coluna] = float.NaN;
+        }
     }
-}
+
+    Console.Write("\n\nDivisão das matrizes");
+    for (int linha = 0; linha < qtdLinhas; linha++)
+    {
+        Console.WriteLine();
+        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        {
+            Console.Write($"{resultado[linha, coluna]:0.00} ");
+        }
+    }
+
+    do
+    {
+        Console.WriteLine("\n\nDeseja sair do programa?");
+        Console.WriteLine("1 - Sair");
+        Console.WriteLine("2 - Continuar");
+        option = int.Parse(Console.ReadLine());
+    } while (option < 1 || option > 2);
+} while (option == 2);
