@@ -44,6 +44,48 @@ void GerarValores(float[,] matriz, int min, int max)
     }
 }
 
+float[,] CalcularMatriz(float[,] m1, float[,] m2, int op)
+{
+    float[,] res = CriarMatriz(qtdLinhas, qtdColunas);
+    // Operando as matrizes
+    for (int linha = 0; linha < qtdLinhas; linha++)
+    {
+        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        {
+            switch (op)
+            {
+                // Soma
+                case 1:
+                    res[linha, coluna] = m1[linha, coluna] + m2[linha, coluna];
+                    break;
+
+                // Subtração
+                case 2:
+                    res[linha, coluna] = m1[linha, coluna] - m2[linha, coluna];
+                    break;
+
+                // Multiplicação
+                case 3:
+                    res[linha, coluna] = m1[linha, coluna] * m2[linha, coluna];
+                    break;
+
+                // Divisão
+                case 4:
+                    if (m2[linha, coluna] != 0)
+                        res[linha, coluna] = m1[linha, coluna] / m2[linha, coluna];
+                    else
+                        res[linha, coluna] = float.NaN;
+                    break;
+                default:
+                    res[linha, coluna] = float.NaN;
+                    break;
+            }
+        }
+    }
+
+    return res;
+}
+
 void ImprimirMatriz(float[,] matriz, string titulo)
 {
     Console.Write("\n\n"+titulo);
@@ -76,7 +118,6 @@ do
 
     matriz1 = CriarMatriz(qtdLinhas, qtdColunas);
     matriz2 = CriarMatriz(qtdLinhas, qtdColunas);
-    resultado = CriarMatriz(qtdLinhas, qtdColunas);
 
     GerarValores(matriz1, 0, 10);
     GerarValores(matriz2, 0, 10);
@@ -86,41 +127,7 @@ do
 
     operacao = MenuOperacao();
 
-    // Operando as matrizes
-    for (int linha = 0; linha < qtdLinhas; linha++)
-    {
-        for (int coluna = 0; coluna < qtdColunas; coluna++)
-        {
-            switch (operacao)
-            {
-                // Soma
-                case 1:
-                    resultado[linha, coluna] = matriz1[linha, coluna] + matriz2[linha, coluna];
-                    break;
-
-                // Subtração
-                case 2:
-                    resultado[linha, coluna] = matriz1[linha, coluna] - matriz2[linha, coluna];
-                    break;
-
-                // Multiplicação
-                case 3:
-                    resultado[linha, coluna] = matriz1[linha, coluna] * matriz2[linha, coluna];
-                    break;
-
-                // Divisão
-                case 4:
-                    if (matriz2[linha, coluna] != 0)
-                        resultado[linha, coluna] = matriz1[linha, coluna] / matriz2[linha, coluna];
-                    else
-                        resultado[linha, coluna] = float.NaN;
-                    break;
-                default:
-                    resultado[linha, coluna] = float.NaN;
-                    break;
-            }
-        }
-    }
+    resultado = CalcularMatriz(matriz1, matriz2, operacao);
 
     string msg = "";
     switch(operacao)
