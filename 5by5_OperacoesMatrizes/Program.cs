@@ -149,6 +149,10 @@ do
 
     }
 
+    Console.Clear();
+    ImprimirMatriz(matriz1, "Matriz 1", qtdLinhas, qtdColunas);
+    ImprimirMatriz(matriz2, "Matriz 2", qtdLinhas, qtdColunas);
+
     ImprimirMatriz(resultado, msg, qtdLinhas, qtdColunas);
     
 } while (menu() == 2);
