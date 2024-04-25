@@ -44,13 +44,13 @@ void GerarValores(float[,] matriz, int min, int max)
     }
 }
 
-float[,] CalcularMatriz(float[,] m1, float[,] m2, int op)
+float[,] CalcularMatriz(float[,] m1, float[,] m2, int op, int maxLinhas, int maxColunas)
 {
-    float[,] res = CriarMatriz(qtdLinhas, qtdColunas);
+    float[,] res = CriarMatriz(maxLinhas, maxColunas);
     // Operando as matrizes
-    for (int linha = 0; linha < qtdLinhas; linha++)
+    for (int linha = 0; linha < maxLinhas; linha++)
     {
-        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        for (int coluna = 0; coluna < maxColunas; coluna++)
         {
             switch (op)
             {
@@ -127,7 +127,7 @@ do
 
     operacao = MenuOperacao();
 
-    resultado = CalcularMatriz(matriz1, matriz2, operacao);
+    resultado = CalcularMatriz(matriz1, matriz2, operacao, qtdLinhas, qtdColunas);
 
     string msg = "";
     switch(operacao)
