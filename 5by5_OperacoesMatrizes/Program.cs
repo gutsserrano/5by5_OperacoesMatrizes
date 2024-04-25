@@ -33,11 +33,11 @@ float[,] CriarMatriz(int maxLinha, int maxColuna)
     return new float[maxLinha, maxColuna];
 }
 
-void GerarValores(float[,] matriz, int min, int max)
+void GerarValores(float[,] matriz, int min, int max, int maxLinhas, int maxColunas)
 {
-    for (int linha = 0; linha < qtdLinhas; linha++)
+    for (int linha = 0; linha < maxLinhas; linha++)
     {
-        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        for (int coluna = 0; coluna < maxColunas; coluna++)
         {
             matriz[linha, coluna] = new Random().Next(min, max);
         }
@@ -86,13 +86,13 @@ float[,] CalcularMatriz(float[,] m1, float[,] m2, int op, int maxLinhas, int max
     return res;
 }
 
-void ImprimirMatriz(float[,] matriz, string titulo)
+void ImprimirMatriz(float[,] matriz, string titulo, int maxLinhas, int maxColunas)
 {
     Console.Write("\n\n"+titulo);
-    for (int linha = 0; linha < qtdLinhas; linha++)
+    for (int linha = 0; linha < maxLinhas; linha++)
     {
         Console.WriteLine();
-        for (int coluna = 0; coluna < qtdColunas; coluna++)
+        for (int coluna = 0; coluna < maxColunas; coluna++)
         {
             Console.Write(matriz[linha, coluna] + " ");
         }
@@ -112,18 +112,20 @@ int menu()
     return option;
 }
 
+
 do
 {
     Console.Clear();
+    Console.WriteLine("  __  __         _          _                \r\n |  \\/  |       | |        (_)               \r\n | \\  / |  __ _ | |_  _ __  _  ____ ___  ___ \r\n | |\\/| | / _` || __|| '__|| ||_  // _ \\/ __|\r\n | |  | || (_| || |_ | |   | | / /|  __/\\__ \\\r\n |_|  |_| \\__,_| \\__||_|   |_|/___|\\___||___/\r\n                                             ");
 
     matriz1 = CriarMatriz(qtdLinhas, qtdColunas);
     matriz2 = CriarMatriz(qtdLinhas, qtdColunas);
 
-    GerarValores(matriz1, 0, 10);
-    GerarValores(matriz2, 0, 10);
+    GerarValores(matriz1, 0, 10, qtdLinhas, qtdColunas);
+    GerarValores(matriz2, 0, 10, qtdLinhas, qtdColunas);
 
-    ImprimirMatriz(matriz1, "Matriz 1");
-    ImprimirMatriz(matriz2, "Matriz 2");
+    ImprimirMatriz(matriz1, "Matriz 1", qtdLinhas, qtdColunas);
+    ImprimirMatriz(matriz2, "Matriz 2", qtdLinhas, qtdColunas);
 
     operacao = MenuOperacao();
 
@@ -147,6 +149,6 @@ do
 
     }
 
-    ImprimirMatriz(resultado, msg);
+    ImprimirMatriz(resultado, msg, qtdLinhas, qtdColunas);
     
 } while (menu() == 2);
