@@ -5,12 +5,29 @@
 	c) Função que cria a matriz passando 2 parametros (linha, coluna)
 */
 
-int qtdLinhas = 5, qtdColunas = 5;
+int qtdLinhas = 0, qtdColunas = 0;
 float[,] matriz1;
 float[,] matriz2;
 float[,] resultado;
 int operacao;
 int option;
+
+int MenuTamanho(string nome)
+{
+    int tamanho;
+    do
+    {
+        Console.WriteLine($"Selecione a quantidade de {nome}:");
+        tamanho = int.Parse(Console.ReadLine());
+
+        if(tamanho <= 0)
+        {
+            Console.WriteLine("\nVoce deve digitar um valor maior que zero!\n");
+        }
+    } while (tamanho <= 0);
+
+    return tamanho;
+}
 
 int MenuOperacao()
 {
@@ -117,6 +134,9 @@ do
 {
     Console.Clear();
     Console.WriteLine("  __  __         _          _                \r\n |  \\/  |       | |        (_)               \r\n | \\  / |  __ _ | |_  _ __  _  ____ ___  ___ \r\n | |\\/| | / _` || __|| '__|| ||_  // _ \\/ __|\r\n | |  | || (_| || |_ | |   | | / /|  __/\\__ \\\r\n |_|  |_| \\__,_| \\__||_|   |_|/___|\\___||___/\r\n                                             ");
+
+    qtdLinhas = MenuTamanho("linhas");
+    qtdColunas = MenuTamanho("colunas");
 
     matriz1 = CriarMatriz(qtdLinhas, qtdColunas);
     matriz2 = CriarMatriz(qtdLinhas, qtdColunas);
